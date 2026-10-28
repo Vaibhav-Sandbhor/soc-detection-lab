@@ -1,0 +1,8 @@
+# Brute-Force Authentication Detection
+# Alerts when a single account has >5 failed logons from the same source within 1 minute
+
+index=main source="WinEventLog:Security" EventCode=4625
+| eval Account_Name=mvfilter(Account_Name!="-")
+| bin _time span=1m
+| stats count by _time, Source_Network_Address, Account_Name
+| where count > 5
