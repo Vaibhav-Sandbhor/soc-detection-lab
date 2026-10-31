@@ -1,0 +1,7 @@
+# PowerShell Abuse Detection
+# Flags PowerShell invocations using obfuscation/evasion flags commonly seen in attacker tooling
+
+index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 Image="*powershell.exe*"
+Image!="*SplunkUniversalForwarder*"
+(CommandLine="*-EncodedCommand*" OR CommandLine="*-enc*" OR CommandLine="*-ExecutionPolicy Bypass*" OR CommandLine="*-WindowStyle Hidden*" OR CommandLine="*-NoProfile*")
+| table _time, Image, CommandLine, ParentImage, User
