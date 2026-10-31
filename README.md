@@ -52,19 +52,12 @@ detection engineering, and incident investigation — mapped to MITRE ATT\&CK.
 
 
 
-| Technique | ATT\&CK ID | Status |
-
+| Technique | ATT&CK ID | Status |
 |---|---|---|
-
-| Brute-force authentication | T1110 | In progress |
-
-| PowerShell abuse | T1059.001 | Planned |
-
-| Suspicious process execution | T1055 / T1218 | Planned |
-
-| Reconnaissance (AD enumeration) | T1087 / T1018 | Planned |
-
-
+| Brute-force authentication | T1110 | Complete |
+| PowerShell abuse | T1059.001 | Complete |
+| Suspicious process execution | T1218 | Complete |
+| Reconnaissance (tool clustering) | T1082 / T1087 / T1018 | Complete |
 
 \## Repo structure
 

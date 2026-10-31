@@ -1,0 +1,9 @@
+# Reconnaissance Detection — Tool Clustering
+# Flags bursts of 3+ distinct recon tools executed within a 30-second
+# window by the same user/parent process
+
+index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
+(Image="*whoami.exe*" OR Image="*net.exe*" OR Image="*systeminfo.exe*" OR Image="*nltest.exe*" OR Image="*ipconfig.exe*")
+| bin _time span=30s
+| stats dc(Image) as distinct_tools, values(Image) as tools_used, count by _time, ParentImage, User
+| where distinct_tools >= 3
