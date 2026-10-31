@@ -1,0 +1,7 @@
+# Suspicious Process Execution Detection — LOLBin Abuse
+# Flags certutil.exe used with flags indicating file download/decode,
+# a well-known "living off the land" technique
+
+index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 Image="*certutil.exe*"
+(CommandLine="*-urlcache*" OR CommandLine="*-decode*" OR CommandLine="*-split*")
+| table _time, Image, CommandLine, ParentImage, User
